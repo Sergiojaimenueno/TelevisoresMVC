@@ -24,6 +24,6 @@ public class TelevisorQLED extends Televisor {
 
     @Override
     public String toString() {
-        return "QLED - Marca: "+ getMarca()+"Modelo: "+getModelo()+ "Precio: "+ getPrecio()+"Numero de serie "+getNumSerie();
+        return "QLED - Marca: "+ getMarca()+" Modelo: "+getModelo()+ " Precio: "+ getPrecio()+" Numero de serie "+getNumSerie();
     }
 }

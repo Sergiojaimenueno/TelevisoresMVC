@@ -9,21 +9,22 @@ public class TelevisorLED extends Televisor {
     public TelevisorLED() {
     }
 
-    public TelevisorLED(String numSerie, double precio, String marca, String modelo, int pulgadas, LocalDate fechaFabricacion, int ConsumoVatios) {
+    public TelevisorLED(String numSerie, double precio, String marca, String modelo, int pulgadas, LocalDate fechaFabricacion, int consumoVatios) {
         super(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion);
         this.consumoVatios = consumoVatios;
     }
 
-    public int consumoVatios() {
+
+    public int getConsumoVatios() {
         return consumoVatios;
     }
 
-    public void consumoVatios(int consumoVatios) {
+    public void setConsumoVatios(int consumoVatios) {
         this.consumoVatios = consumoVatios;
     }
 
     @Override
     public String toString() {
-        return "LED - Marca: "+ getMarca()+"Modelo: "+getModelo()+ "Precio: "+ getPrecio()+"Numero de serie "+getNumSerie();
+        return "LED - Marca: "+ getMarca()+" Modelo: "+getModelo()+ " Precio: "+ getPrecio()+" Numero de serie "+getNumSerie();
     }
 }

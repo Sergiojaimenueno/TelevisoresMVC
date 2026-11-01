@@ -24,6 +24,6 @@ public class TelevisorOLED extends Televisor{
 
     @Override
     public String toString() {
-        return "OLED - Marca: "+ getMarca()+"Modelo: "+getModelo()+ "Precio: "+ getPrecio()+"Numero de serie "+getNumSerie();
+        return "OLED - Marca: "+ getMarca()+" Modelo: "+getModelo()+ " Precio: "+ getPrecio()+" Numero de serie "+getNumSerie();
     }
 }
