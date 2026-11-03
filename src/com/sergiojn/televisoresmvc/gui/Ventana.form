@@ -23,6 +23,8 @@
     <rowspec value="top:4dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
     <rowspec value="top:4dlu:noGrow"/>
+    <rowspec value="center:max(d;4px):noGrow"/>
+    <rowspec value="top:4dlu:noGrow"/>
     <rowspec value="center:d:grow"/>
     <colspec value="fill:104px:noGrow"/>
     <colspec value="left:4dlu:noGrow"/>
@@ -32,7 +34,7 @@
     <colspec value="left:4dlu:noGrow"/>
     <colspec value="fill:112px:noGrow"/>
     <constraints>
-      <xy x="20" y="5" width="487" height="423"/>
+      <xy x="20" y="5" width="487" height="434"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -207,7 +209,7 @@
       </component>
       <scrollpane id="9ff6b">
         <constraints>
-          <grid row="22" column="0" row-span="1" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="24" column="0" row-span="1" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false" defaultalign-vert="false"/>
         </constraints>
         <properties/>
@@ -244,6 +246,15 @@
         </constraints>
         <properties>
           <text value="LED"/>
+        </properties>
+      </component>
+      <component id="500fe" class="javax.swing.JButton" binding="eliminarBoton">
+        <constraints>
+          <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <forms/>
+        </constraints>
+        <properties>
+          <text value="Eliminar"/>
         </properties>
       </component>
     </children>

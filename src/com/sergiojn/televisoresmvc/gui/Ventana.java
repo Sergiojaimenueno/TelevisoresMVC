@@ -24,6 +24,7 @@ public class Ventana {
     public JButton exportarBoton;
     public JButton importarBoton;
     public JList lista1;
+    public JButton eliminarBoton;
 
     public JFrame frame;
     public DefaultListModel<Televisor> dlmTelevisor;
@@ -60,7 +61,7 @@ public class Ventana {
      */
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
-        panel1.setLayout(new FormLayout("fill:104px:noGrow,left:4dlu:noGrow,fill:122px:noGrow,left:4dlu:noGrow,fill:102px:noGrow,left:4dlu:noGrow,fill:112px:noGrow", "center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:d:grow"));
+        panel1.setLayout(new FormLayout("fill:104px:noGrow,left:4dlu:noGrow,fill:122px:noGrow,left:4dlu:noGrow,fill:102px:noGrow,left:4dlu:noGrow,fill:112px:noGrow", "center:d:noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:max(d;4px):noGrow,top:4dlu:noGrow,center:d:grow"));
         final JLabel label1 = new JLabel();
         label1.setText("Tipo Televisor");
         CellConstraints cc = new CellConstraints();
@@ -114,7 +115,7 @@ public class Ventana {
         exportarBoton.setText("Exportar");
         panel1.add(exportarBoton, cc.xy(1, 19));
         final JScrollPane scrollPane1 = new JScrollPane();
-        panel1.add(scrollPane1, cc.xyw(1, 23, 7, CellConstraints.FILL, CellConstraints.FILL));
+        panel1.add(scrollPane1, cc.xyw(1, 25, 7, CellConstraints.FILL, CellConstraints.FILL));
         lista1 = new JList();
         scrollPane1.setViewportView(lista1);
         datoExtraLabel = new JLabel();
@@ -126,6 +127,9 @@ public class Ventana {
         ledRadioButton = new JRadioButton();
         ledRadioButton.setText("LED");
         panel1.add(ledRadioButton, cc.xy(3, 1));
+        eliminarBoton = new JButton();
+        eliminarBoton.setText("Eliminar");
+        panel1.add(eliminarBoton, cc.xy(1, 23));
         ButtonGroup buttonGroup;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(ledRadioButton);
@@ -140,4 +144,5 @@ public class Ventana {
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
+
 }

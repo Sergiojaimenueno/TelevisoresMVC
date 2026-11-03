@@ -45,6 +45,8 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
         vista.ledRadioButton.addActionListener(listener);
         vista.oledRadioButton.addActionListener(listener);
         vista.qledRadioButton.addActionListener(listener);
+        vista.eliminarBoton.addActionListener(listener);
+
     }
 
     private void addListSelectionListener(ListSelectionListener listener) {
@@ -130,6 +132,19 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
                     } catch (ParserConfigurationException | IOException | SAXException ex) {
                         ex.printStackTrace();
                     }
+                    refrescar();
+                }
+                break;
+
+            case "Eliminar":
+                Televisor seleccionado = (Televisor) vista.lista1.getSelectedValue();
+                if (seleccionado == null) {
+                    Util.mensajeError("Selecciona un televisor de la lista");
+                    break;
+                }
+                if (Util.mensajeConfirmacion("¿Seguro que quieres eliminarlo?", "Eliminar") == JOptionPane.YES_OPTION) {
+                    modelo.eliminarTelevisor(seleccionado);
+                    limpiarCampos();
                     refrescar();
                 }
                 break;

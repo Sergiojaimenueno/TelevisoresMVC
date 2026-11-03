@@ -51,6 +51,11 @@ public class TelevisoresModelo {
         }
         return false;
     }
+
+    public void eliminarTelevisor(Televisor televisor) {
+        listaTelevisores.remove(televisor);
+    }
+
     public void exportarXML(File fichero) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
