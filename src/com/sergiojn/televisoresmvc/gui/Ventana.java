@@ -7,6 +7,10 @@ import com.sergiojn.televisoresmvc.base.Televisor;
 
 import javax.swing.*;
 
+/**
+ * Vista de la aplicación: ventana con el formulario, los botones y la lista de televisores.
+ * @author Sergio
+ */
 public class Ventana {
     private JPanel panel1;
     public JRadioButton ledRadioButton;
@@ -29,6 +33,9 @@ public class Ventana {
     public JFrame frame;
     public DefaultListModel<Televisor> dlmTelevisor;
 
+    /**
+     * Crea la ventana, le pone el icono y la muestra centrada.
+     */
     public Ventana() {
         frame = new JFrame("Gestor de Televisores");
         frame.setIconImage(new ImageIcon(getClass().getResource("/img/tv32.png")).getImage());
@@ -40,6 +47,9 @@ public class Ventana {
         initComponents();
     }
 
+    /**
+     * Crea el modelo de la lista y se lo asigna a lista1.
+     */
     private void initComponents() {
         dlmTelevisor = new DefaultListModel<>();
         lista1.setModel(dlmTelevisor);

@@ -18,30 +18,73 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Modelo de la aplicación: guarda la lista de televisores y la exporta o importa en XML.
+ * @author Sergio
+ */
 public class TelevisoresModelo {
 
     private ArrayList<Televisor> listaTelevisores = new ArrayList<>();
 
+    /**
+     * Devuelve la lista de televisores.
+     * @return la lista de televisores
+     */
     public ArrayList<Televisor> obtenerListaTelevisores(){
         return listaTelevisores;
     }
+    /**
+     * Da de alta un televisor LED y lo añade a la lista.
+     * @param numSerie número de serie
+     * @param precio precio del tv
+     * @param marca marca
+     * @param modelo modelo
+     * @param pulgadas tamaño en pulgadas
+     * @param fechaFabricacion fecha de fabricación
+     * @param consumoVatios consumo en vatios
+     */
     public void altaLED(String numSerie, double precio, String marca, String modelo,
                         int pulgadas, LocalDate fechaFabricacion, int consumoVatios) {
         TelevisorLED nuevoLED = new TelevisorLED(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion, consumoVatios);
         listaTelevisores.add(nuevoLED);
     }
+    /**
+     * Da de alta un televisor OLED y lo añade a la lista.
+     * @param numSerie número de serie
+     * @param precio precio en euros
+     * @param marca marca
+     * @param modelo modelo
+     * @param pulgadas tamaño en pulgadas
+     * @param fechaFabricacion fecha de fabricación
+     * @param aniosGarantia años de garantía
+     */
     public void altaOLED(String numSerie, double precio, String marca, String modelo,
                          int pulgadas, LocalDate fechaFabricacion, int aniosGarantia) {
         TelevisorOLED nuevoOLED = new TelevisorOLED(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion, aniosGarantia);
         listaTelevisores.add(nuevoOLED);
     }
 
+    /**
+     * Da de alta un televisor QLED y lo añade a la lista.
+     * @param numSerie número de serie
+     * @param precio precio del televisor
+     * @param marca marca
+     * @param modelo modelo
+     * @param pulgadas tamaño en pulgadas
+     * @param fechaFabricacion fecha de fabricación
+     * @param horasVidaUtil horas de vida útil
+     */
     public void altaQLED(String numSerie, double precio, String marca, String modelo,
                          int pulgadas, LocalDate fechaFabricacion, int horasVidaUtil) {
         TelevisorQLED nuevoQLED = new TelevisorQLED(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion, horasVidaUtil);
         listaTelevisores.add(nuevoQLED);
     }
 
+    /**
+     * Comprueba si ya existe un televisor con ese número de serie.
+     * @param numSerie número de serie a buscar
+     * @return true si ya existe, false si no
+     */
     public boolean existeNumSerie (String numSerie){
         for (Televisor unTelevisor : listaTelevisores){
             if (unTelevisor.getNumSerie().equals(numSerie)){
@@ -52,10 +95,20 @@ public class TelevisoresModelo {
         return false;
     }
 
+    /**
+     * Elimina un televisor de la lista.
+     * @param televisor televisor que se quiere eliminar
+     */
     public void eliminarTelevisor(Televisor televisor) {
         listaTelevisores.remove(televisor);
     }
 
+    /**
+     * Guarda todos los televisores de la lista en un fichero XML usando DOM.
+     * @param fichero fichero XML de destino
+     * @throws ParserConfigurationException si no se puede crear el documento
+     * @throws TransformerException si no se puede escribir el fichero
+     */
     public void exportarXML(File fichero) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -120,6 +173,13 @@ public class TelevisoresModelo {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.transform(source, resultado);
     }
+    /**
+     * Lee un fichero XML y carga sus televisores en la lista (borra los anteriores).
+     * @param fichero fichero XML que se lee
+     * @throws ParserConfigurationException si no se puede crear el lector
+     * @throws IOException si no se puede leer el fichero
+     * @throws SAXException si el XML no es válido
+     */
     public void importarXML(File fichero) throws ParserConfigurationException, IOException, SAXException {
         listaTelevisores = new ArrayList<Televisor>();
         TelevisorLED nuevoLED = null;

@@ -20,12 +20,21 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Properties;
 
+/**
+ * Controlador: une la vista con el modelo y responde a los botones, a la lista y al cierre de la ventana.
+ * @author Sergio
+ */
 public class TelevisoresControlador implements ActionListener, ListSelectionListener, WindowListener {
 
     private Ventana vista;
     private TelevisoresModelo modelo;
     private File ultimaRutaExportada;
 
+    /**
+     * Crea el controlador, carga la configuración y registra los listeners.
+     * @param vista ventana de la aplicación
+     * @param modelo modelo con la lista de televisores
+     */
     public TelevisoresControlador(Ventana vista, TelevisoresModelo modelo) {
         this.vista = vista;
         this.modelo = modelo;
@@ -57,20 +66,36 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
         vista.frame.addWindowListener(listener);
     }
 
+    /**
+     * Lee del fichero televisores.conf la última ruta usada para exportar.
+     * @throws IOException si no se puede leer el fichero
+     */
     private void cargarDatosConfiguracion() throws IOException {
         Properties configuracion = new Properties();
         configuracion.load(new FileReader("televisores.conf"));
         ultimaRutaExportada = new File(configuracion.getProperty("Ultima ruta exportada"));
     }
 
+    /**
+     * Guarda en televisores.conf la última ruta usada para exportar.
+     * @throws IOException si no se puede escribir el fichero
+     */
     private void guardarDatosConfiguracion() throws IOException {
         Properties configuracion = new Properties();
         configuracion.setProperty("Ultima ruta exportada", ultimaRutaExportada.getAbsolutePath());
         configuracion.store(new PrintWriter("televisores.conf"), "Datos configuración televisores");
     }
+    /**
+     * Actualiza la última ruta exportada.
+     * @param ultimaRutaExportada carpeta del último fichero exportado
+     */
     private void actualizarDatosConfiguracion(File ultimaRutaExportada){
         this.ultimaRutaExportada = ultimaRutaExportada;
     }
+    /**
+     * Responde a los botones y radio buttons según su texto (Nuevo, Exportar, Importar, Eliminar, LED, OLED, QLED).
+     * @param e evento del componente pulsado
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
@@ -147,6 +172,7 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
                     limpiarCampos();
                     refrescar();
                 }
+
                 break;
 
             case "LED":
@@ -167,6 +193,10 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
     }
 
 
+    /**
+     * Pregunta antes de cerrar y, si se confirma, guarda la configuración y sale.
+     * @param e evento de la ventana
+     */
     @Override
     public void windowClosing(WindowEvent e) {
         if (Util.mensajeConfirmacion("¿Quieres cerrar la ventana?", "Salir") == JOptionPane.YES_OPTION){
@@ -207,6 +237,10 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
 
     }
 
+    /**
+     * Al seleccionar un televisor de la lista, muestra sus datos en los campos.
+     * @param e evento de selección de la lista
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting()) {
@@ -229,6 +263,10 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
             }
         }
     }
+    /**
+     * Comprueba si algún campo del formulario está vacío.
+     * @return true si hay algún campo vacío
+     */
     private boolean hayCamposVacios() {
         if (vista.numSerieTxt.getText().isEmpty() ||
                 vista.precioTxt.getText().isEmpty() ||
@@ -242,6 +280,9 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
         return false;
     }
 
+    /**
+     * Vacía todos los campos del formulario.
+     */
     private void limpiarCampos() {
         vista.numSerieTxt.setText(null);
         vista.precioTxt.setText(null);
@@ -253,6 +294,9 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
         vista.numSerieTxt.requestFocus();
     }
 
+    /**
+     * Vuelve a cargar la lista de la vista con los televisores del modelo.
+     */
     private void refrescar() {
         vista.dlmTelevisor.clear();
         for (Televisor unTelevisor : modelo.obtenerListaTelevisores()) {

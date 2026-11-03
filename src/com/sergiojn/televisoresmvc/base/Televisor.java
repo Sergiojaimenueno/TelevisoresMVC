@@ -2,6 +2,10 @@ package com.sergiojn.televisoresmvc.base;
 
 import java.time.LocalDate;
 
+/**
+ * Clase abstracta con los datos comunes de todos los televisores.
+ * @author Sergio
+ */
 public abstract class Televisor {
 
     private String numSerie;
@@ -14,6 +18,15 @@ public abstract class Televisor {
     public Televisor() {
     }
 
+    /**
+     * Constructor con todos los datos comunes.
+     * @param numSerie número de serie
+     * @param precio precio del televisor
+     * @param marca marca del televisor
+     * @param modelo modelo del televisor
+     * @param pulgadas tamaño de la pantalla en pulgadas
+     * @param fechaFabricacion fecha de fabricación
+     */
     public Televisor(String numSerie, double precio, String marca, String modelo, int pulgadas, LocalDate fechaFabricacion) {
         this.numSerie = numSerie;
         this.precio = precio;
