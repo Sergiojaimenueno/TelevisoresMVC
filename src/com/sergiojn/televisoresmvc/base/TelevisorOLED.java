@@ -4,22 +4,22 @@ import java.time.LocalDate;
 
 public class TelevisorOLED extends Televisor{
 
-    private int aniosGarantiaPantalla;
+    private int aniosGarantia;
 
     public TelevisorOLED() {
     }
 
-    public TelevisorOLED(String numSerie, double precio, String marca, String modelo, int pulgadas, LocalDate fechaFabricacion, int aniosGarantiaPantalla) {
+    public TelevisorOLED(String numSerie, double precio, String marca, String modelo, int pulgadas, LocalDate fechaFabricacion, int aniosGarantia) {
         super(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion);
-        this.aniosGarantiaPantalla = aniosGarantiaPantalla;
+        this.aniosGarantia = aniosGarantia;
     }
 
-    public int getAniosGarantiaPantalla() {
-        return aniosGarantiaPantalla;
+    public int getAniosGarantia() {
+        return aniosGarantia;
     }
 
-    public void setAniosGarantiaPantalla(int aniosGarantiaPantalla) {
-        this.aniosGarantiaPantalla = aniosGarantiaPantalla;
+    public void setAniosGarantia(int aniosGarantia) {
+        this.aniosGarantia = aniosGarantia;
     }
 
     @Override

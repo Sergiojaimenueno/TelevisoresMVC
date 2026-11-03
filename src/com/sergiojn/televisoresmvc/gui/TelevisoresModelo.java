@@ -31,8 +31,8 @@ public class TelevisoresModelo {
         listaTelevisores.add(nuevoLED);
     }
     public void altaOLED(String numSerie, double precio, String marca, String modelo,
-                         int pulgadas, LocalDate fechaFabricacion, int aniosGarantiaPantalla) {
-        TelevisorOLED nuevoOLED = new TelevisorOLED(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion, aniosGarantiaPantalla);
+                         int pulgadas, LocalDate fechaFabricacion, int aniosGarantia) {
+        TelevisorOLED nuevoOLED = new TelevisorOLED(numSerie, precio, marca, modelo, pulgadas, fechaFabricacion, aniosGarantia);
         listaTelevisores.add(nuevoOLED);
     }
 
@@ -102,7 +102,7 @@ public class TelevisoresModelo {
                 texto = documento.createTextNode(String.valueOf(((TelevisorLED) unTelevisor).getConsumoVatios()));
             } else if (unTelevisor instanceof TelevisorOLED) {
                 nodoDatos = documento.createElement("aniosgarantia");
-                texto = documento.createTextNode(String.valueOf(((TelevisorOLED) unTelevisor).getAniosGarantiaPantalla()));
+                texto = documento.createTextNode(String.valueOf(((TelevisorOLED) unTelevisor).getAniosGarantia()));
             } else {
                 nodoDatos = documento.createElement("horasvidautil");
                 texto = documento.createTextNode(String.valueOf(((TelevisorQLED) unTelevisor).getHorasVidaUtil()));
@@ -144,7 +144,7 @@ public class TelevisoresModelo {
                 nuevoOLED.setModelo(nodoTelevisor.getChildNodes().item(3).getTextContent());
                 nuevoOLED.setPulgadas(Integer.parseInt(nodoTelevisor.getChildNodes().item(4).getTextContent()));
                 nuevoOLED.setFechaFabricacion(LocalDate.parse(nodoTelevisor.getChildNodes().item(5).getTextContent()));
-                nuevoOLED.setAniosGarantiaPantalla(Integer.parseInt(nodoTelevisor.getChildNodes().item(6).getTextContent()));
+                nuevoOLED.setAniosGarantia(Integer.parseInt(nodoTelevisor.getChildNodes().item(6).getTextContent()));
                 listaTelevisores.add(nuevoOLED);
             } else if (nodoTelevisor.getTagName().equals("TelevisorQLED")) {
                 nuevoQLED = new TelevisorQLED();

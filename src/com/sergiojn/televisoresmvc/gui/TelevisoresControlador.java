@@ -138,7 +138,7 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
                 vista.datoExtraLabel.setText("Consumo (W)");
                 break;
             case "OLED":
-                vista.datoExtraLabel.setText("Años garantía pantalla");
+                vista.datoExtraLabel.setText("Años garantía");
                 break;
             case "QLED":
                 vista.datoExtraLabel.setText("Horas vida útil");
@@ -207,7 +207,7 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
                 vista.datoExtraTxt.setText(String.valueOf(((TelevisorLED) seleccionado).getConsumoVatios()));
             } else if (seleccionado instanceof TelevisorOLED) {
                 vista.oledRadioButton.doClick();
-                vista.datoExtraTxt.setText(String.valueOf(((TelevisorOLED) seleccionado).getAniosGarantiaPantalla()));
+                vista.datoExtraTxt.setText(String.valueOf(((TelevisorOLED) seleccionado).getAniosGarantia()));
             } else {
                 vista.qledRadioButton.doClick();
                 vista.datoExtraTxt.setText(String.valueOf(((TelevisorQLED) seleccionado).getHorasVidaUtil()));
