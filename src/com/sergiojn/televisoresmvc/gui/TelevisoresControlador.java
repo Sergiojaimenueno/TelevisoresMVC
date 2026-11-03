@@ -1,11 +1,17 @@
 package com.sergiojn.televisoresmvc.gui;
 
 import com.sergiojn.televisoresmvc.base.Televisor;
+import com.sergiojn.televisoresmvc.base.TelevisorLED;
+import com.sergiojn.televisoresmvc.base.TelevisorOLED;
+import com.sergiojn.televisoresmvc.base.TelevisorQLED;
+import org.xml.sax.SAXException;
 import util.Util;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -102,6 +108,32 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
                     Util.mensajeError("Precio, pulgadas y el último dato tienen que ser números");
                 }
                 break;
+            case "Exportar":
+                JFileChooser selectorFichero = Util.crearSelectorFichero(ultimaRutaExportada, "Archivos XML", "xml");
+                int opt = selectorFichero.showSaveDialog(null);
+                if (opt == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        modelo.exportarXML(selectorFichero.getSelectedFile());
+                        actualizarDatosConfiguracion(selectorFichero.getSelectedFile());
+                    } catch (ParserConfigurationException | TransformerException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                break;
+
+            case "Importar":
+                JFileChooser selectorFichero2 = Util.crearSelectorFichero(ultimaRutaExportada, "Archivos XML", "xml");
+                int opt2 = selectorFichero2.showOpenDialog(null);
+                if (opt2 == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        modelo.importarXML(selectorFichero2.getSelectedFile());
+                    } catch (ParserConfigurationException | IOException | SAXException ex) {
+                        ex.printStackTrace();
+                    }
+                    refrescar();
+                }
+                break;
+
             case "LED":
                 vista.datoExtraLabel.setText("Consumo (W)");
                 break;
@@ -162,7 +194,25 @@ public class TelevisoresControlador implements ActionListener, ListSelectionList
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-
+        if (e.getValueIsAdjusting()) {
+            Televisor seleccionado = (Televisor) vista.lista1.getSelectedValue();
+            vista.numSerieTxt.setText(seleccionado.getNumSerie());
+            vista.precioTxt.setText(String.valueOf(seleccionado.getPrecio()));
+            vista.marcaTxt.setText(seleccionado.getMarca());
+            vista.modeloTxt.setText(seleccionado.getModelo());
+            vista.pulgadasTxt.setText(String.valueOf(seleccionado.getPulgadas()));
+            vista.fechaFabricacionDPicker.setDate(seleccionado.getFechaFabricacion());
+            if (seleccionado instanceof TelevisorLED) {
+                vista.ledRadioButton.doClick();
+                vista.datoExtraTxt.setText(String.valueOf(((TelevisorLED) seleccionado).getConsumoVatios()));
+            } else if (seleccionado instanceof TelevisorOLED) {
+                vista.oledRadioButton.doClick();
+                vista.datoExtraTxt.setText(String.valueOf(((TelevisorOLED) seleccionado).getAniosGarantiaPantalla()));
+            } else {
+                vista.qledRadioButton.doClick();
+                vista.datoExtraTxt.setText(String.valueOf(((TelevisorQLED) seleccionado).getHorasVidaUtil()));
+            }
+        }
     }
     private boolean hayCamposVacios() {
         if (vista.numSerieTxt.getText().isEmpty() ||
